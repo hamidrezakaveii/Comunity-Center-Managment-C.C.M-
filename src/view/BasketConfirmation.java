@@ -52,7 +52,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
             rowData[2] = m.isChoice();
             tbModel.addRow(rowData);
 
-        }
+        }  
     }
 
     /**
@@ -89,11 +89,6 @@ public class BasketConfirmation extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtblBasketConfirmation);
-        if (jtblBasketConfirmation.getColumnModel().getColumnCount() > 0) {
-            jtblBasketConfirmation.getColumnModel().getColumn(0).setHeaderValue("Name");
-            jtblBasketConfirmation.getColumnModel().getColumn(1).setHeaderValue("Telephone");
-            jtblBasketConfirmation.getColumnModel().getColumn(2).setHeaderValue("Confirmation");
-        }
 
         jbtnCreate.setText("Create");
         jbtnCreate.addActionListener(new java.awt.event.ActionListener() {
