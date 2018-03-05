@@ -7,7 +7,7 @@ import model.MemberList;
 import persistence.FileManagement;
 import view.AddMember;
 import view.BasketConfirmation;
-import view.BasketConfirmationSwing;
+//import view.BasketConfirmationSwing;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -44,7 +44,7 @@ public class AppCtr {
         FileManagement.readFile(memberList, true, mList);
         
         //create Confirmation list object
-        ConfirmationList cList = new ConfirmationList();
+  //      ConfirmationList cList = new ConfirmationList();
         
 //        MemberList addlist = new MemberList();
 
@@ -107,7 +107,7 @@ public class AppCtr {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BasketConfirmation(mList, cList).setVisible(true);
+                new BasketConfirmation(mList).setVisible(true);
             }
         });
 

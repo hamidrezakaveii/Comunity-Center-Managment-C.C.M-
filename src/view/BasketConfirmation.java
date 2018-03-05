@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ConfirmationList;
 import model.Member;
 import model.MemberList;
+import persistence.FileManagement;
 
 /**
  *
@@ -21,12 +22,12 @@ public class BasketConfirmation extends javax.swing.JFrame {
      * Creates new form BasketConfirmation
      */
     private MemberList ml;
-    private ConfirmationList cl;
+    // private ConfirmationList cl;
 
-    public BasketConfirmation(MemberList ml, ConfirmationList cl) {
+    public BasketConfirmation(MemberList ml) {
         initComponents();
         this.ml = ml;
-        this.cl = cl;
+        //this.cl = cl;
 
         //populate table from file
         Object rowData[] = new Object[3];
@@ -56,7 +57,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
             rowData[2] = m.isChoice();
             tbModel.addRow(rowData);
 
-        }  
+        }
     }
 
     /**
@@ -73,8 +74,13 @@ public class BasketConfirmation extends javax.swing.JFrame {
         jtblBasketConfirmation = new javax.swing.JTable();
         jbtnCreate = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
+        jlblDate = new javax.swing.JLabel();
+        jlblUser = new javax.swing.JLabel();
+        jtxtUser = new javax.swing.JTextField();
+        jtxtDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Add Confirmaion List ");
 
         jtblBasketConfirmation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,6 +121,10 @@ public class BasketConfirmation extends javax.swing.JFrame {
             }
         });
 
+        jlblDate.setText("Date:");
+
+        jlblUser.setText("User:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,13 +136,31 @@ public class BasketConfirmation extends javax.swing.JFrame {
                         .addComponent(jbtnCreate)
                         .addGap(18, 18, 18)
                         .addComponent(jbtnCancel))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jlblDate)
+                .addGap(18, 18, 18)
+                .addComponent(jtxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(jlblUser)
+                .addGap(18, 18, 18)
+                .addComponent(jtxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jlblDate)
+                        .addComponent(jtxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jlblUser)
+                        .addComponent(jtxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -168,19 +196,22 @@ public class BasketConfirmation extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
- 
-                for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
-                    if((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)){
-                        ml.get(i).setChoice(true);
-                        cl.add(ml.get(i));
-                    }
+        String fileName = jtxtDate.getText()+"_"+jtxtUser.getText()+".txt";
+        for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
+            if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)) {
+                ml.get(i).setChoice(true);
             }
-                
-                for(Member m: cl){
-                    System.out.println(m.getFistName()+" "+m.getLastName());
-                }
+        }
 
-
+        for (int i=0; i<ml.size(); i++) {
+            if(ml.get(i).isChoice()){
+            FileManagement.writeFile(fileName, ml.get(i).toString(), true);
+            }
+        }
+        
+        for(Member m: ml){
+            m.setChoice(false);
+        };
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     /**
@@ -223,6 +254,10 @@ public class BasketConfirmation extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnCreate;
+    private javax.swing.JLabel jlblDate;
+    private javax.swing.JLabel jlblUser;
     private javax.swing.JTable jtblBasketConfirmation;
+    private javax.swing.JTextField jtxtDate;
+    private javax.swing.JTextField jtxtUser;
     // End of variables declaration//GEN-END:variables
 }
