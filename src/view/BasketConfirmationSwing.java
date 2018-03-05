@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.*;
 import model.ConfirmationList;
 import model.Member;
@@ -109,32 +111,51 @@ public class BasketConfirmationSwing extends JFrame {
             }
         }
         );
-        
-        createButton.addActionListener(new ActionListener(){
+
+        createButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae){
+            public void actionPerformed(ActionEvent ae) {
                 //add confirmed member to confirmation list
-                for(Member m: ml){
-                    if(m.isChoice()){
+                for (Member m : ml) {
+                    if (m.isChoice()) {
                         cl.addMember(m);
                     }
                 }
-                
+
                 //print list of confirmation list(temporary)
-                for (int i=0; i< cl.size(); i++){
-                    System.out.println(cl.get(i).getFistName()+" "+
-                            cl.get(i).getLastName()); 
+                for (int i = 0; i < cl.size(); i++) {
+                    System.out.println(cl.get(i).getFistName() + " "
+                            + cl.get(i).getLastName());
                 }
-                
+
                 //reinstantiate member's choice to false
-                for(Member m:ml){
+                for (Member m : ml) {
                     m.setChoice(false);
                 }
-                
+
                 JOptionPane.showConfirmDialog(null, "List created!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         );
+
+        table.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                for (int i = 0; i < table.getModel().getRowCount(); i++) {
+                    if ((Boolean) table.getModel().getValueAt(i, 2)) {
+                        //ml.get(i).setChoice(true);
+                        System.out.println(">\t" + table.getSelectedRow());
+                        break;
+                    }
+                    if (!(Boolean) table.getModel().getValueAt(i, 2)) {
+                        //ml.get(i).setChoice(false);
+                        System.out.println("<\t" + table.getSelectedRow());
+                        break;
+                    }
+                }
+            }
+
+        });
 
         //
         mainPanel.add(northPanel, BorderLayout.NORTH);
