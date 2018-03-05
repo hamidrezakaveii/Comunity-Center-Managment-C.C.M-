@@ -196,7 +196,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-        String fileName = jtxtDate.getText()+"_"+jtxtUser.getText()+".txt";
+        String fileName = "confirmations\\"+jtxtDate.getText()+"_"+jtxtUser.getText()+".txt";
         for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
             if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)) {
                 ml.get(i).setChoice(true);
@@ -208,6 +208,8 @@ public class BasketConfirmation extends javax.swing.JFrame {
             FileManagement.writeFile(fileName, ml.get(i).toString(), true);
             }
         }
+        
+        FileManagement.writeFile("confirmations\\"+"controlFile.txt", jtxtDate.getText()+"_"+jtxtUser.getText()+".txt", true);
         
         for(Member m: ml){
             m.setChoice(false);
