@@ -5,7 +5,9 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
+import model.ConfirmationList;
 import model.Member;
 import model.MemberList;
 
@@ -18,11 +20,13 @@ public class BasketConfirmation extends javax.swing.JFrame {
     /**
      * Creates new form BasketConfirmation
      */
-    private MemberList c1;
+    private MemberList ml;
+    private ConfirmationList cl;
 
-    public BasketConfirmation(MemberList c1) {
+    public BasketConfirmation(MemberList ml, ConfirmationList cl) {
         initComponents();
-        this.c1 = c1;
+        this.ml = ml;
+        this.cl = cl;
 
         //populate table from file
         Object rowData[] = new Object[3];
@@ -46,7 +50,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
         DefaultTableModel tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel();
 //        jtblBasketConfirmation.setModel(tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel());
 
-        for (Member m : c1) {
+        for (Member m : ml) {
             rowData[0] = m.getFistName() + " " + m.getLastName();
             rowData[1] = m.getTelephone();
             rowData[2] = m.isChoice();
@@ -80,9 +84,16 @@ public class BasketConfirmation extends javax.swing.JFrame {
                 "Name", "Telephone", "Confirmation"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, true
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -109,24 +120,24 @@ public class BasketConfirmation extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 103, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jbtnCreate)
-                .addGap(56, 56, 56)
-                .addComponent(jbtnCancel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnCreate)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnCancel))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnCreate)
-                    .addComponent(jbtnCancel))
+                    .addComponent(jbtnCancel)
+                    .addComponent(jbtnCreate))
                 .addGap(29, 29, 29))
         );
 
@@ -148,6 +159,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -156,7 +168,19 @@ public class BasketConfirmation extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-        // TODO add your handling code here:
+ 
+                for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
+                    if((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)){
+                        ml.get(i).setChoice(true);
+                        cl.add(ml.get(i));
+                    }
+            }
+                
+                for(Member m: cl){
+                    System.out.println(m.getFistName()+" "+m.getLastName());
+                }
+
+
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     /**
