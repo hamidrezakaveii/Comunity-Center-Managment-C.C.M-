@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.text.SimpleDateFormat;
 import model.Member;
 import model.MemberList;
 import persistence.FileManagement;
@@ -46,14 +47,14 @@ public class AddMember extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jtxtFirstName = new javax.swing.JTextField();
         jtxtLastName = new javax.swing.JTextField();
-        jtxtBirthDate = new javax.swing.JTextField();
         jtxtAddress = new javax.swing.JTextField();
         jtxtCity = new javax.swing.JTextField();
         jtxtPostalCode = new javax.swing.JTextField();
         jtxtTelephone = new javax.swing.JTextField();
         jtxtEmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jtxtRegistrationdate = new javax.swing.JTextField();
+        jBDate = new com.toedter.calendar.JDateChooser();
+        jRDate = new com.toedter.calendar.JDateChooser();
         jbtnAddMember = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
 
@@ -109,13 +110,13 @@ public class AddMember extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtxtFirstName)
                     .addComponent(jtxtLastName)
-                    .addComponent(jtxtBirthDate)
                     .addComponent(jtxtAddress)
                     .addComponent(jtxtCity)
                     .addComponent(jtxtPostalCode)
                     .addComponent(jtxtTelephone)
                     .addComponent(jtxtEmail)
-                    .addComponent(jtxtRegistrationdate, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                    .addComponent(jBDate, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(jRDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -130,10 +131,10 @@ public class AddMember extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jtxtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jtxtBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jBDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jtxtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,10 +155,10 @@ public class AddMember extends javax.swing.JFrame {
                     .addComponent(jtxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jtxtRegistrationdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jRDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jbtnAddMember.setText("Add Member");
@@ -194,7 +195,7 @@ public class AddMember extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnCancel)
                     .addComponent(jbtnAddMember))
@@ -213,18 +214,23 @@ public class AddMember extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMemberActionPerformed
+        //Create date formatter and instantiate birthDate and registrationDate
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String birthDate = sdf.format(jBDate.getCalendar().getTime());
+        String registrationDate = sdf.format(jRDate.getCalendar().getTime());
+        
         String fName = jtxtFirstName.getText();
         String lName = jtxtLastName.getText();
-        String bDate = jtxtBirthDate.getText();
+        String bDate = birthDate;
         String address = jtxtAddress.getText();
         String city = jtxtCity.getText();
         String pCode = jtxtPostalCode.getText();
         String telephone = jtxtTelephone.getText();
         String email = jtxtEmail.getText();
-        String rDate = jtxtRegistrationdate.getText();
+        String rDate = registrationDate;
         
         //add member inside the member list
-        Member member = new Member(rDate, fName, lName, bDate, address, city, pCode, telephone, email);
+        Member member = new Member(fName, lName, bDate, address, city, pCode, telephone, email,rDate);
         ml.addMember(member);
         //ml.viewMeber();
         FileManagement.writeFile("memberlist.txt",member.toString(),true );
@@ -267,6 +273,7 @@ public class AddMember extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser jBDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -277,18 +284,17 @@ public class AddMember extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private com.toedter.calendar.JDateChooser jRDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbtnAddMember;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JTextField jtxtAddress;
-    private javax.swing.JTextField jtxtBirthDate;
     private javax.swing.JTextField jtxtCity;
     private javax.swing.JTextField jtxtEmail;
     private javax.swing.JTextField jtxtFirstName;
     private javax.swing.JTextField jtxtLastName;
     private javax.swing.JTextField jtxtPostalCode;
-    private javax.swing.JTextField jtxtRegistrationdate;
     private javax.swing.JTextField jtxtTelephone;
     // End of variables declaration//GEN-END:variables
 }

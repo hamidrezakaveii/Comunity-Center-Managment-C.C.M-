@@ -6,11 +6,13 @@
 package view;
 
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import model.ConfirmationList;
 import model.Member;
 import model.MemberList;
 import persistence.FileManagement;
+import java.util.Calendar;
 
 /**
  *
@@ -60,6 +62,10 @@ public class BasketConfirmation extends javax.swing.JFrame {
         }
     }
 
+    private BasketConfirmation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +83,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
         jlblDate = new javax.swing.JLabel();
         jlblUser = new javax.swing.JLabel();
         jtxtUser = new javax.swing.JTextField();
-        jtxtDate = new javax.swing.JTextField();
+        jDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Confirmaion List ");
@@ -142,8 +148,8 @@ public class BasketConfirmation extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jlblDate)
                 .addGap(18, 18, 18)
-                .addComponent(jtxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(jlblUser)
                 .addGap(18, 18, 18)
                 .addComponent(jtxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,12 +160,11 @@ public class BasketConfirmation extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlblDate)
-                        .addComponent(jtxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblDate, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jlblUser)
-                        .addComponent(jtxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -196,7 +201,11 @@ public class BasketConfirmation extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-        String fileName = "confirmations\\"+jtxtDate.getText()+"_"+jtxtUser.getText()+".txt";
+        //Create date formatter and instantiate date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(jDate.getCalendar().getTime());
+        
+        String fileName = "confirmations\\"+date+"_"+jtxtUser.getText()+".txt";
         for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
             if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)) {
                 ml.get(i).setChoice(true);
@@ -209,7 +218,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
             }
         }
         
-        FileManagement.writeFile("confirmations\\"+"controlFile.txt", jtxtDate.getText()+"_"+jtxtUser.getText()+".txt", true);
+        FileManagement.writeFile("confirmations\\"+"controlFile.txt", date+"_"+jtxtUser.getText()+".txt", true);
         
         for(Member m: ml){
             m.setChoice(false);
@@ -252,6 +261,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnCancel;
@@ -259,7 +269,6 @@ public class BasketConfirmation extends javax.swing.JFrame {
     private javax.swing.JLabel jlblDate;
     private javax.swing.JLabel jlblUser;
     private javax.swing.JTable jtblBasketConfirmation;
-    private javax.swing.JTextField jtxtDate;
     private javax.swing.JTextField jtxtUser;
     // End of variables declaration//GEN-END:variables
 }
