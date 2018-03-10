@@ -231,7 +231,7 @@ public class AddMember extends javax.swing.JFrame {
         
         //add member inside the member list
         Member member = new Member(fName, lName, bDate, address, city, pCode, telephone, email,rDate);
-        ml.addMember(member);
+        ml.add(member);
         //ml.viewMeber();
         FileManagement.writeFile("memberlist.txt",member.toString(),true );
         

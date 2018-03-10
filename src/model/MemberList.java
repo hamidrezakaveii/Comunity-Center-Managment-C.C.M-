@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class MemberList extends ArrayList<Member> {
     
-    public void addMember(Member m){
-        this.add(m);
-    }
+//    public void addMember(Member m){
+//        this.add(m);
+//    }
     
 //    public void viewMeber(){
 //        

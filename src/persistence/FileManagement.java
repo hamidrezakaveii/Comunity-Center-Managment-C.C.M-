@@ -67,7 +67,8 @@ public class FileManagement {
             br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
-                list.addMember(Utility.splitLine(line));
+                //list.addMember(Utility.splitLine(line));
+                list.add(Utility.splitLine(line));
 
             }
         } catch (IOException ex) {

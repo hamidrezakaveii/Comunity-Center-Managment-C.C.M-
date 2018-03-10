@@ -218,7 +218,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
             }
         }
         
-        FileManagement.writeFile("confirmations\\"+"controlFile.txt", date+"_"+jtxtUser.getText()+".txt", true);
+        FileManagement.writeFile("confirmations\\"+"controlFile.txt", date+";"+jtxtUser.getText(), true);
         
         for(Member m: ml){
             m.setChoice(false);
