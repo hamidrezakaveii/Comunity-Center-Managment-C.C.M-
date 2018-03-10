@@ -1,10 +1,12 @@
 package control;
 
+import java.util.ArrayList;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.SwingUtilities;
 import model.ConfirmationList;
 import model.MemberList;
 import persistence.FileManagement;
+import tools.CreateMember;
 import view.AddMember;
 import view.BasketConfirmation;
 import view.ShowConfirmationList;
@@ -41,8 +43,12 @@ public class AppCtr {
         
         // Create member list object
         MemberList mList = new MemberList();
+        ArrayList<String> list = new ArrayList<>();
         String memberList = "MemberList.txt";
-        FileManagement.readFile(memberList, true, mList);
+        FileManagement.readFile(memberList, true, list);
+        for(String s: list){
+          mList.add(CreateMember.splitLine(s));
+        };
         
         //create Confirmation list object
   //      ConfirmationList cList = new ConfirmationList();

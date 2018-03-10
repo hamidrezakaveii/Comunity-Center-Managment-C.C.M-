@@ -12,10 +12,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.MemberList;
-import tools.Utility;
+import tools.CreateMember;
 /**
  *
  * @author 1795928
@@ -56,7 +57,7 @@ public class FileManagement {
         }
     }
 
-    public static void readFile(String fileInput, boolean statut, MemberList list) {
+    public static void readFile(String fileInput, boolean statut, ArrayList<String> list) {
 
         File file = new File(fileInput);
         BufferedReader br = null;
@@ -68,7 +69,8 @@ public class FileManagement {
             String line;
             while ((line = br.readLine()) != null) {
                 //list.addMember(Utility.splitLine(line));
-                list.add(Utility.splitLine(line));
+                //list.add(Utility.splitLine(line));
+                list.add(line);
 
             }
         } catch (IOException ex) {

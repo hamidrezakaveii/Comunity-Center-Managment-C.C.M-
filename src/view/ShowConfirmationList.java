@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import model.MemberList;
 import persistence.FileManagement;
 
 /**
@@ -27,6 +28,19 @@ public class ShowConfirmationList extends javax.swing.JFrame {
      */
     public ShowConfirmationList() {
         initComponents();
+
+        Object[] rowData = new Object[2];
+        //MemberList confirmList = new MemberList();
+        ArrayList<String> list = new ArrayList<>();
+        DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
+        FileManagement.readFile("controlFile.txt", true, list);
+
+        for (String s : list) {
+            String[] parts = s.split(";");
+            rowData[0] = parts[0];
+            rowData[1] = parts[1];
+            model.addRow(rowData);
+        };
     }
 
     /**
@@ -120,40 +134,39 @@ public class ShowConfirmationList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnShowActionPerformed
-        Object[] rowData = new Object[2];
-        ArrayList<String> list = new ArrayList<>();
-        BufferedReader br = null;
-        DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
-        
-        
-        try {
-            br = new BufferedReader(new FileReader(new File("controlFile.txt")));
-            String line;
-            while ((line = br.readLine())!= null){
-                list.add(line);  
-        }
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            try {
-                br.close();
-            } catch (IOException ex) {
-                Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-        for (String s: list){
-        String[] parts = s.split(";");
-        rowData[0] = parts[0];
-        rowData[1] = parts[1];
-        model.addRow(rowData);
-        };
-        
-        
-        
+//        Object[] rowData = new Object[2];
+//        MemberList confirmList = new MemberList();
+//        ArrayList<String> list = new ArrayList<>();
+//        BufferedReader br = null;
+//        DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
+//        FileManagement.readFile("controlFile.txt", true, list);
+//
+//        for (String s : list) {
+//            String[] parts = s.split(";");
+//            rowData[0] = parts[0];
+//            rowData[1] = parts[1];
+//            model.addRow(rowData);
+//        };
+
+//        try {
+//            br = new BufferedReader(new FileReader(new File("controlFile.txt")));
+//            String line;
+//            while ((line = br.readLine())!= null){
+//                list.add(line);  
+//        }
+//            
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
+//        }finally{
+//            try {
+//                br.close();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+
     }//GEN-LAST:event_jbtnShowActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed

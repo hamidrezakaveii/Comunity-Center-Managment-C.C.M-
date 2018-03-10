@@ -13,6 +13,7 @@ import model.Member;
 import model.MemberList;
 import persistence.FileManagement;
 import java.util.Calendar;
+import tools.CreateMember;
 
 /**
  *
@@ -33,25 +34,12 @@ public class BasketConfirmation extends javax.swing.JFrame {
 
         //populate table from file
         Object rowData[] = new Object[3];
-//        DefaultTableModel tbModel = new DefaultTableModel() {
-//
-//            @Override
-//            public Class<?> getColumnClass(int column) {
-//                switch (column) {
-//                    case 0:
-//                        return String.class;
-//                    case 1:
-//                        return String.class;
-//                    case 2:
-//                        return Boolean.class;
-//                    default:
-//                        return String.class;
-//                }
-//            }
-//            
-//        };
+
         DefaultTableModel tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel();
 //        jtblBasketConfirmation.setModel(tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel());
+//        for(String s: ml){
+//            Utility.splitLine(s);
+//        };
 
         for (Member m : ml) {
             rowData[0] = m.getFistName() + " " + m.getLastName();
@@ -218,7 +206,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
             }
         }
         
-        FileManagement.writeFile("confirmations\\"+"controlFile.txt", date+";"+jtxtUser.getText(), true);
+        FileManagement.writeFile("controlFile.txt", date+";"+jtxtUser.getText(), true);
         
         for(Member m: ml){
             m.setChoice(false);

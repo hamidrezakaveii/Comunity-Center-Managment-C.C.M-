@@ -11,7 +11,7 @@ import model.Member;
  *
  * @author HAMIDREZA
  */
-public class Utility {
+public class CreateMember {
         
     public static Member splitLine(String line){
         
