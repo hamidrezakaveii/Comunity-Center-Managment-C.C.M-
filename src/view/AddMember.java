@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -25,14 +26,18 @@ public class AddMember extends javax.swing.JFrame {
      */
     private MemberList ml;
     private Member member;
-
+    private Member eM;
+    
     public AddMember(MemberList ml) {
         initComponents();
         this.ml = ml;
     }
     
      public AddMember(Member m, MemberList ml){
+        this.eM=m;
+        this.ml = ml;
         initComponents();
+        jbtnAddMember.setText("Save");
         this.jtxtFirstName.setText(m.getFistName());
         this.jtxtLastName.setText(m.getLastName());
         try {
@@ -241,6 +246,7 @@ public class AddMember extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMemberActionPerformed
+
         //Create date formatter and instantiate birthDate and registrationDate
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String birthDate = sdf.format(jBDate.getCalendar().getTime());
@@ -256,16 +262,30 @@ public class AddMember extends javax.swing.JFrame {
         String telephone = jtxtTelephone.getText();
         String email = jtxtEmail.getText();
         String rDate = registrationDate;
-
+        if (eM == null){
+            member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate);
         //add member inside the member list
-        member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate);
-        ml.add(member);
-        
-        //write new member in text file
-        FileManagement.writeFile("memberlist.txt", member.toString(), true);
-        
+            ml.add(member);
+            //write new member in text file
+            FileManagement.writeFile("memberlist.txt", member.toString(), true);
         //show message for add new user 
-        JOptionPane.showMessageDialog(null, "New member added successfully!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "New member added successfully!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            File file = new File("MemberList.txt");
+            eM.setFistName(fName);
+            eM.setLastName(lName);
+            eM.setBirthdate(bDate);
+            eM.setAddress(address);
+            eM.setCity(city);
+            eM.setPostalCode(pCode);
+            eM.setTelephone(telephone);
+            eM.setEmail(email);
+            eM.setRegistrationDate(rDate);
+            file.delete();
+            for (Member m : ml) {
+                FileManagement.writeFile("MemberList.txt", m.toString(), true);
+                }
+        }
         dispose();
     }//GEN-LAST:event_jbtnAddMemberActionPerformed
 
