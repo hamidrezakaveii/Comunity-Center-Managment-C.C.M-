@@ -5,7 +5,10 @@
  */
 package view;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Member;
 import model.MemberList;
@@ -26,6 +29,27 @@ public class AddMember extends javax.swing.JFrame {
     public AddMember(MemberList ml) {
         initComponents();
         this.ml = ml;
+    }
+    
+     public AddMember(Member m, MemberList ml){
+        initComponents();
+        this.jtxtFirstName.setText(m.getFistName());
+        this.jtxtLastName.setText(m.getLastName());
+        try {
+            this.jBDate.setDate((new SimpleDateFormat("dd-MM-yyyy").parse(m.getBirthdate())));
+        } catch (ParseException ex) {
+            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.jtxtAddress.setText(m.getAddress());
+        this.jtxtCity.setText(m.getCity());
+        this.jtxtPostalCode.setText(m.getPostalCode());
+        this.jtxtTelephone.setText(m.getTelephone());
+        this.jtxtEmail.setText(m.getEmail());
+        try {
+            this.jRDate.setDate((new SimpleDateFormat("dd-MM-yyyy").parse(m.getRegistrationDate())));
+        } catch (ParseException ex) {
+            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -242,7 +266,7 @@ public class AddMember extends javax.swing.JFrame {
         
         //show message for add new user 
         JOptionPane.showMessageDialog(null, "New member added successfully!", "Add member", JOptionPane.INFORMATION_MESSAGE);
-
+        dispose();
     }//GEN-LAST:event_jbtnAddMemberActionPerformed
 
     /**

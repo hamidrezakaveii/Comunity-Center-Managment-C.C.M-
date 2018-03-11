@@ -9,6 +9,7 @@ import persistence.FileManagement;
 import tools.CreateMember;
 import view.AddMember;
 import view.CreateBasketConfirmationList;
+import view.MainWindow;
 import view.ShowConfirmationList;
 //import view.BasketConfirmationSwing;
 
@@ -144,12 +145,16 @@ public class AppCtr {
         //</editor-fold>
 
         /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ShowConfirmationList().setVisible(true);
+//            }
+//        });
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowConfirmationList().setVisible(true);
+                new MainWindow(mList).setVisible(true);
             }
         });
-
 
 
 
