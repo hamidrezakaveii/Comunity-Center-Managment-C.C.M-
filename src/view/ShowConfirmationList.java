@@ -26,14 +26,15 @@ public class ShowConfirmationList extends javax.swing.JFrame {
     /**
      * Creates new form ShowConfirmationList
      */
+    ArrayList<String> list = null;
+
     public ShowConfirmationList() {
         initComponents();
 
         Object[] rowData = new Object[2];
-        //MemberList confirmList = new MemberList();
-        ArrayList<String> list = new ArrayList<>();
+        list = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
-        FileManagement.readFile("controlFile.txt", true, list);
+        FileManagement.readFile("confirmedFile.txt", true, list);
 
         for (String s : list) {
             String[] parts = s.split(";");
@@ -61,7 +62,7 @@ public class ShowConfirmationList extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Show Confirmed List");
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jtblShow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,7 +71,15 @@ public class ShowConfirmationList extends javax.swing.JFrame {
             new String [] {
                 "Date", "User"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jtblShow);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -134,39 +143,22 @@ public class ShowConfirmationList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnShowActionPerformed
-//        Object[] rowData = new Object[2];
-//        MemberList confirmList = new MemberList();
-//        ArrayList<String> list = new ArrayList<>();
-//        BufferedReader br = null;
-//        DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
-//        FileManagement.readFile("controlFile.txt", true, list);
-//
-//        for (String s : list) {
-//            String[] parts = s.split(";");
-//            rowData[0] = parts[0];
-//            rowData[1] = parts[1];
-//            model.addRow(rowData);
-//        };
+        String fileName;
+        int row = jtblShow.getSelectedRow();
+        String select = list.get(row);
+        String[] parts = select.split(";");
+        String date = parts[0];
+        String user = parts[1];
+        fileName = "confirmations\\"+ date + "_"+ user +".txt";
 
-//        try {
-//            br = new BufferedReader(new FileReader(new File("controlFile.txt")));
-//            String line;
-//            while ((line = br.readLine())!= null){
-//                list.add(line);  
-//        }
-//            
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
-//        }finally{
-//            try {
-//                br.close();
-//            } catch (IOException ex) {
-//                Logger.getLogger(ShowConfirmationList.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new CreateBasketDeliveryList(fileName, date, user).setVisible(true);
+            }
+        });
+        
+        dispose();
     }//GEN-LAST:event_jbtnShowActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -176,37 +168,37 @@ public class ShowConfirmationList extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ShowConfirmationList().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ShowConfirmationList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ShowConfirmationList().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

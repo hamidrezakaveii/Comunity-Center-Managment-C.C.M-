@@ -13,13 +13,14 @@ import model.Member;
 import model.MemberList;
 import persistence.FileManagement;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import tools.CreateMember;
 
 /**
  *
  * @author HAMIDREZA
  */
-public class BasketConfirmation extends javax.swing.JFrame {
+public class CreateBasketConfirmationList extends javax.swing.JFrame {
 
     /**
      * Creates new form BasketConfirmation
@@ -27,31 +28,22 @@ public class BasketConfirmation extends javax.swing.JFrame {
     private MemberList ml;
     // private ConfirmationList cl;
 
-    public BasketConfirmation(MemberList ml) {
+    public CreateBasketConfirmationList(MemberList ml) {
         initComponents();
         this.ml = ml;
-        //this.cl = cl;
 
         //populate table from file
-        Object rowData[] = new Object[3];
+        Object rowData[] = new Object[4];
 
-        DefaultTableModel tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel();
-//        jtblBasketConfirmation.setModel(tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel());
-//        for(String s: ml){
-//            Utility.splitLine(s);
-//        };
-
+        //create DefaultTableModel and populate jtblBasketConfirmation table
+        DefaultTableModel model = (DefaultTableModel) jtblBasketConfirmation.getModel();
         for (Member m : ml) {
             rowData[0] = m.getFistName() + " " + m.getLastName();
             rowData[1] = m.getTelephone();
-            rowData[2] = m.isChoice();
-            tbModel.addRow(rowData);
-
+            rowData[2] = m.getEmail();
+            rowData[3] = m.isChoice();
+            model.addRow(rowData);
         }
-    }
-
-    private BasketConfirmation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -74,21 +66,21 @@ public class BasketConfirmation extends javax.swing.JFrame {
         jDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Add Confirmaion List ");
+        setTitle("Create Basket Confirmaion List ");
 
         jtblBasketConfirmation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Telephone", "Confirmation"
+                "Name", "Telephone", "Email", "Coming Confirmation"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -141,7 +133,7 @@ public class BasketConfirmation extends javax.swing.JFrame {
                 .addComponent(jlblUser)
                 .addGap(18, 18, 18)
                 .addComponent(jtxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,24 +185,30 @@ public class BasketConfirmation extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(jDate.getCalendar().getTime());
         
-        String fileName = "confirmations\\"+date+"_"+jtxtUser.getText()+".txt";
+        //create new txt file for writting new confirmation list
+        String fileNameW = "confirmations\\" + date + "_" + jtxtUser.getText() + ".txt";
+        
+        //read from selected checkbox from jtblBasketConfirmation table
         for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
             if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)) {
                 ml.get(i).setChoice(true);
             }
         }
-
-        for (int i=0; i<ml.size(); i++) {
-            if(ml.get(i).isChoice()){
-            FileManagement.writeFile(fileName, ml.get(i).toString(), true);
+        //write the coming confirmation selected to new file
+        for (int i = 0; i < ml.size(); i++) {
+            if (ml.get(i).isChoice()) {
+                FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
             }
         }
         
-        FileManagement.writeFile("controlFile.txt", date+";"+jtxtUser.getText(), true);
-        
-        for(Member m: ml){
+        //adding the name of new confirmation list to confirmedFile.txt
+        FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
+
+        for (Member m : ml) {
             m.setChoice(false);
         };
+        //show message for adding new confirmation list
+        JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     /**

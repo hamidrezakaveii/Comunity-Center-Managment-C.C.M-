@@ -8,7 +8,7 @@ import model.MemberList;
 import persistence.FileManagement;
 import tools.CreateMember;
 import view.AddMember;
-import view.BasketConfirmation;
+import view.CreateBasketConfirmationList;
 import view.ShowConfirmationList;
 //import view.BasketConfirmationSwing;
 

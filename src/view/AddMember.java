@@ -6,9 +6,11 @@
 package view;
 
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import model.Member;
 import model.MemberList;
 import persistence.FileManagement;
+
 /**
  *
  * @author 1795928
@@ -19,7 +21,8 @@ public class AddMember extends javax.swing.JFrame {
      * Creates new form AddMember
      */
     private MemberList ml;
-    
+    private Member member;
+
     public AddMember(MemberList ml) {
         initComponents();
         this.ml = ml;
@@ -219,6 +222,7 @@ public class AddMember extends javax.swing.JFrame {
         String birthDate = sdf.format(jBDate.getCalendar().getTime());
         String registrationDate = sdf.format(jRDate.getCalendar().getTime());
         
+        //instantiate the AddMember form attributes
         String fName = jtxtFirstName.getText();
         String lName = jtxtLastName.getText();
         String bDate = birthDate;
@@ -228,13 +232,17 @@ public class AddMember extends javax.swing.JFrame {
         String telephone = jtxtTelephone.getText();
         String email = jtxtEmail.getText();
         String rDate = registrationDate;
-        
+
         //add member inside the member list
-        Member member = new Member(fName, lName, bDate, address, city, pCode, telephone, email,rDate);
+        member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate);
         ml.add(member);
-        //ml.viewMeber();
-        FileManagement.writeFile("memberlist.txt",member.toString(),true );
         
+        //write new member in text file
+        FileManagement.writeFile("memberlist.txt", member.toString(), true);
+        
+        //show message for add new user 
+        JOptionPane.showMessageDialog(null, "New member added successfully!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jbtnAddMemberActionPerformed
 
     /**
