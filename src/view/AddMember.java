@@ -33,11 +33,13 @@ public class AddMember extends javax.swing.JFrame {
         this.ml = ml;
     }
     
+    //Constructor for when editing member from member list
      public AddMember(Member m, MemberList ml){
         this.eM=m;
         this.ml = ml;
         initComponents();
         jbtnAddMember.setText("Save");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Edit member information"));
         this.jtxtFirstName.setText(m.getFistName());
         this.jtxtLastName.setText(m.getLastName());
         try {
@@ -285,6 +287,7 @@ public class AddMember extends javax.swing.JFrame {
             for (Member m : ml) {
                 FileManagement.writeFile("MemberList.txt", m.toString(), true);
                 }
+            JOptionPane.showMessageDialog(null, eM.getFistName()+"'s informations changed", "Member Data", JOptionPane.INFORMATION_MESSAGE);
         }
         dispose();
     }//GEN-LAST:event_jbtnAddMemberActionPerformed
