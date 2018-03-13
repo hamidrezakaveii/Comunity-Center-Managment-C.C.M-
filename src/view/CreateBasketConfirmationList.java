@@ -190,7 +190,7 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
         
         //read from selected checkbox from jtblBasketConfirmation table
         for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
-            if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 2)) {
+            if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 3)) {
                 ml.get(i).setChoice(true);
             }
         }
