@@ -51,9 +51,8 @@ public class AppCtr {
           mList.add(CreateMember.splitLine(s));
         };
         
-        //create Confirmation list object
-  //      ConfirmationList cList = new ConfirmationList();
-        
+  //      ConfirmationList cList = new ConfirmationList();        
+//create Confirmation list object      
 //        MemberList addlist = new MemberList();
 
 
