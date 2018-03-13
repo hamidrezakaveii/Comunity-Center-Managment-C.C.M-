@@ -19,7 +19,7 @@ import persistence.FileManagement;
  *
  * @author 1795928
  */
-public class AddMember extends javax.swing.JFrame {
+public class AddManagement extends javax.swing.JFrame {
 
     /**
      * Creates new form AddMember
@@ -28,13 +28,13 @@ public class AddMember extends javax.swing.JFrame {
     private Member member;
     private Member eM;
     
-    public AddMember(MemberList ml) {
+    public AddManagement(MemberList ml) {
         initComponents();
         this.ml = ml;
     }
     
     //Constructor for when editing member from member list
-     public AddMember(Member m, MemberList ml){
+     public AddManagement(Member m, MemberList ml){
         this.eM=m;
         this.ml = ml;
         initComponents();
@@ -43,9 +43,9 @@ public class AddMember extends javax.swing.JFrame {
         this.jtxtFirstName.setText(m.getFistName());
         this.jtxtLastName.setText(m.getLastName());
         try {
-            this.jBDate.setDate((new SimpleDateFormat("dd-MM-yyyy").parse(m.getBirthdate())));
+            this.jBDate.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(m.getBirthdate())));
         } catch (ParseException ex) {
-            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.jtxtAddress.setText(m.getAddress());
         this.jtxtCity.setText(m.getCity());
@@ -53,9 +53,9 @@ public class AddMember extends javax.swing.JFrame {
         this.jtxtTelephone.setText(m.getTelephone());
         this.jtxtEmail.setText(m.getEmail());
         try {
-            this.jRDate.setDate((new SimpleDateFormat("dd-MM-yyyy").parse(m.getRegistrationDate())));
+            this.jRDate.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(m.getRegistrationDate())));
         } catch (ParseException ex) {
-            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

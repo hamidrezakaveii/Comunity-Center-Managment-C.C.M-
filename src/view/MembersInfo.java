@@ -18,7 +18,7 @@ import persistence.FileManagement;
  *
  * @author jvict
  */
-public class MemberManagement extends javax.swing.JFrame {
+public class MembersInfo extends javax.swing.JFrame {
 
     private MemberList ml;
 //Testing custom table model
@@ -27,7 +27,7 @@ public class MemberManagement extends javax.swing.JFrame {
     /**
      * Creates new form MemberManagement
      */
-    public MemberManagement(MemberList ml) {
+    public MembersInfo(MemberList ml) {
         initComponents();
 //Testing custom table model
 //        jtMemberList.setModel(tableModel);
@@ -187,12 +187,13 @@ public class MemberManagement extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddMemberActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddMember(ml).setVisible(true);
+                new AddManagement(ml).setVisible(true);
             }
         });
     }//GEN-LAST:event_jbAddMemberActionPerformed
@@ -222,11 +223,11 @@ public class MemberManagement extends javax.swing.JFrame {
         //Open member to edit when double click
         if (evt.getClickCount() == 2) {
             JTable target = (JTable) evt.getSource();
-            int row = target.getSelectedRow();
-            int column = target.getSelectedColumn();
+            //int row = target.getSelectedRow();
+            //int column = target.getSelectedColumn();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new AddMember(ml.get(target.getSelectedRow()), ml).setVisible(true);
+                    new AddManagement(ml.get(target.getSelectedRow()), ml).setVisible(true);
                 }
             });
         }
