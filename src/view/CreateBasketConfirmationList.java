@@ -65,8 +65,9 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
         jtxtUser = new javax.swing.JTextField();
         jDate = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create Basket Confirmaion List ");
+        setResizable(false);
 
         jtblBasketConfirmation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

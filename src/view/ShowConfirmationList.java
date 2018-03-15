@@ -59,8 +59,9 @@ public class ShowConfirmationList extends javax.swing.JFrame {
         jbtnShow = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Confirmed List");
+        setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

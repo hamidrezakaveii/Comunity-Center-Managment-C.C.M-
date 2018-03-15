@@ -29,11 +29,8 @@ public class MembersInfo extends javax.swing.JFrame {
      */
     public MembersInfo(MemberList ml) {
         initComponents();
-//Testing custom table model
-//        jtMemberList.setModel(tableModel);
         this.ml = ml;
         DefaultTableModel tbModel = (DefaultTableModel) jtMl.getModel();
-//        jtblBasketConfirmation.setModel(tbModel = (DefaultTableModel) jtblBasketConfirmation.getModel());
         //Filling the table with members information
         Object rowData[] = new Object[3];
         for (Member m : ml) {
@@ -63,12 +60,9 @@ public class MembersInfo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Members List");
+        setResizable(false);
 
         jtMl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,7 +119,7 @@ public class MembersInfo extends javax.swing.JFrame {
         jLabel1.setText("Edit Member: Double Click to edit selected member informations");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Delete Member: Select member(s) and click Delete");
+        jLabel2.setText("Delete Member: Select member(s) and click Delete Selected Members bellow");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -236,10 +230,6 @@ public class MembersInfo extends javax.swing.JFrame {
     private void jbMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMainMenuActionPerformed
                 dispose();
     }//GEN-LAST:event_jbMainMenuActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-//Program to re-list member list and create the method to do this
-    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
