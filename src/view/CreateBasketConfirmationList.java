@@ -66,7 +66,7 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
         jDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Create Basket Confirmaion List ");
+        setTitle("Create Basket Confirmation List ");
         setResizable(false);
 
         jtblBasketConfirmation.setModel(new javax.swing.table.DefaultTableModel(
@@ -183,6 +183,7 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
 
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
         //Create date formatter and instantiate date
+        Boolean noChoice = false;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(jDate.getCalendar().getTime());
 
@@ -192,30 +193,39 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
         //Verify if there is any checeked members 
         for (int j = 0; j < jtblBasketConfirmation.getModel().getRowCount(); j++) {
             if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(j, 3)) {
-            
-            //read from selected checkbox from jtblBasketConfirmation table
-            for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
-                if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 3)) {
-                    ml.get(i).setChoice(true);
-                }
-            }
-            //write the coming confirmation selected to new file
-            for (int i = 0; i < ml.size(); i++) {
-                if (ml.get(i).isChoice()) {
-                    FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
-                }
-            }
-
-            //adding the name of new confirmation list to confirmedFile.txt
-            FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
-
-            for (Member m : ml) {
-                m.setChoice(false);
-            };
-            //show message for adding new confirmation list
-            JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+                noChoice = true;
             }
         }
+        if (jtxtUser.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Fill with the responsible name on the top(User:)", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (!noChoice) {
+                JOptionPane.showMessageDialog(null, "You should choose at least one member to create the list", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                //read from selected checkbox from jtblBasketConfirmation table
+                for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
+                    if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 3)) {
+                        ml.get(i).setChoice(true);
+                    }
+                }
+                //write the coming confirmation selected to new file
+                for (int i = 0; i < ml.size(); i++) {
+                    if (ml.get(i).isChoice()) {
+                        FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
+                    }
+                }
+
+                //adding the name of new confirmation list to confirmedFile.txt
+                FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
+
+                for (Member m : ml) {
+                    m.setChoice(false);
+                };
+                //show message for adding new confirmation list
+                JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
 //        if (1 == 1) {
 //
 //        } else {
