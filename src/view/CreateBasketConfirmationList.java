@@ -185,9 +185,10 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
         //Create date formatter and instantiate date
         Boolean noChoice = false;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(jDate.getCalendar().getTime());
-
-        //create new txt file for writting new confirmation list
+        String date = null;
+        try{
+            date = sdf.format(jDate.getCalendar().getTime());
+            //create new txt file for writting new confirmation list
         String fileNameW = "confirmations\\" + date + "_" + jtxtUser.getText() + ".txt";
 
         //Verify if there is any checeked members 
@@ -250,6 +251,11 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
 //            //show message for adding new confirmation list
 //            JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
 //        }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "You should choose a date before creating a new confirmation list", "Date error", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     /**
