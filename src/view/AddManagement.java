@@ -266,7 +266,7 @@ public class AddManagement extends javax.swing.JFrame {
         String email = jtxtEmail.getText();
         String rDate = registrationDate;
         if (eM == null){
-            member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate);
+            member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate, false);
         //add member inside the member list
             ml.add(member);
             //write new member in text file

@@ -212,16 +212,18 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
                 //write the coming confirmation selected to new file
                 for (int i = 0; i < ml.size(); i++) {
                     if (ml.get(i).isChoice()) {
+                        //setting choice false before writing to the file
+                        ml.get(i).setChoice(false);
+                        //writing members who will get the basket on the confirmation list
                         FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
                     }
                 }
-
                 //adding the name of new confirmation list to confirmedFile.txt
                 FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
 
-                for (Member m : ml) {
-                    m.setChoice(false);
-                };
+//                for (Member m : ml) {
+//                    m.setChoice(false);
+//                };
                 //show message for adding new confirmation list
                 JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
             }

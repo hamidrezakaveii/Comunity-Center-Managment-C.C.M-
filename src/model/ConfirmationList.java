@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author HAMIDREZA
  */
-public class ConfirmationList extends ArrayList<Member> {
+public class ConfirmationList extends List {
     //private ConfirmationList cl;
     private String date;
     private String user;
@@ -22,8 +22,4 @@ public class ConfirmationList extends ArrayList<Member> {
 
     }
     
-    
-    public void addMember(Member m){
-        this.add(m);
-    }
 }

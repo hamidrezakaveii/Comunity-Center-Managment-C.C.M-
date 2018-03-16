@@ -1,2 +1,0 @@
-Joao;Thiago;1978-04-21;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2001-01-01
-Joao;Matheus;1983-09-07;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2001-01-01

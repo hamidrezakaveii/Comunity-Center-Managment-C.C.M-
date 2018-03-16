@@ -15,10 +15,10 @@ public class Member extends Person {
     private String registrationDate;
     private boolean choice;
 
-    public Member(String fistName, String lastName, String birthdate, String address, String city, String postalCode, String telephone, String email, String registrationDate) {
+    public Member(String fistName, String lastName, String birthdate, String address, String city, String postalCode, String telephone, String email, String registrationDate, Boolean choice) {
         super(fistName, lastName, birthdate, address, city, postalCode, telephone, email);
         this.registrationDate = registrationDate;
-        choice= false;
+        //choice= false;
     }
 
     public boolean isChoice() {
@@ -41,7 +41,7 @@ public class Member extends Person {
     public String toString() {
         return this.getFistName()+";"+this.getLastName()+";"+this.getBirthdate()
                 +";"+this.getAddress()+";"+this.getCity()+";"+this.getPostalCode()
-                +";"+this.getTelephone()+";"+this.getEmail()+";"+this.getRegistrationDate();
+                +";"+this.getTelephone()+";"+this.getEmail()+";"+this.getRegistrationDate()+";"+this.isChoice();
     }
 
 
