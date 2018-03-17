@@ -95,4 +95,23 @@ public class FileManagement {
 
     }
     
+        public static void updateFile() {
+        File folder = new File("confirmations\\");
+        File oldFile = new File("confirmedFile.txt");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<String> fileInfo = new ArrayList<>();
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                String fullFileName = listOfFiles[i].getName();
+                String[] parts = fullFileName.split("\\.");
+                System.out.println(parts[0]);
+                fileInfo.add(parts[0]);
+            }
+        }
+        oldFile.delete();
+        for(String s:fileInfo){
+            FileManagement.writeFile("confirmedFile.txt", s, true);
+        }
+    }
+    
 }

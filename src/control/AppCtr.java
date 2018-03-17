@@ -39,8 +39,6 @@ public class AppCtr {
                 new MainWindow(mList).setVisible(true);
             }
         });
-        
-        Utility.confirmedByFolder();
 
     }
 
