@@ -26,8 +26,7 @@ public class CreateMember {
         String telephone = parts[6];
         String email = parts[7];
         String rDate = parts[8];
-        Boolean choice = Boolean.getBoolean(parts[9]);
-        
+        boolean choice = Boolean.parseBoolean(parts[9]);      
         return new Member(fName, lName, bDate, adress, city, pCode, telephone, email, rDate, choice);
         
     }

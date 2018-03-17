@@ -18,7 +18,7 @@ import tools.CreateMember;
  *
  * @author HAMIDREZA
  */
-public class CreateBasketDeliveryList extends javax.swing.JFrame {
+public class CreateBasketDeliveryList1BKP extends javax.swing.JFrame {
 
     /**
      * Creates new form CreateBasketDeliveryList
@@ -29,7 +29,7 @@ public class CreateBasketDeliveryList extends javax.swing.JFrame {
     ArrayList<String> list = new ArrayList<>();
     MemberList ml = new MemberList();
 
-    public CreateBasketDeliveryList(String fileNameR, String date, String user) {
+    public CreateBasketDeliveryList1BKP(String fileNameR, String date, String user) {
         initComponents();
         this.fileNameR = fileNameR;
         this.date = date;
@@ -44,7 +44,6 @@ public class CreateBasketDeliveryList extends javax.swing.JFrame {
 
         //adding memebers from the string list
         for (String s : list) {
-            System.out.println("list"+s);
             ml.add(CreateMember.splitLine(s));
         }
         
@@ -56,7 +55,6 @@ public class CreateBasketDeliveryList extends javax.swing.JFrame {
             rowData[1] = m.getTelephone();
             rowData[2] = m.getEmail();
             rowData[3] = m.isChoice();
-            System.out.println(m.isChoice());
             model.addRow(rowData);
         };
 
@@ -124,7 +122,7 @@ public class CreateBasketDeliveryList extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtblDelivery);
 
-        jbtnCreate.setText("Save");
+        jbtnCreate.setText("Create");
         jbtnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCreateActionPerformed(evt);
@@ -208,8 +206,8 @@ public class CreateBasketDeliveryList extends javax.swing.JFrame {
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
         
         //create new txt file for writting new confirmation list
-//        String fileNameW = "deliveries\\" + date + "_" + jtxtUser.getText() + ".txt";
-        String fileNameW = "confirmations\\" + date + "_" + jtxtUser.getText() + ".txt";        
+        String fileNameW = "deliveries\\" + date + "_" + jtxtUser.getText() + ".txt";
+        
         //read from selected checkbox from jtblDelivery table
         for (int i = 0; i < jtblDelivery.getModel().getRowCount(); i++) {
             if ((Boolean) jtblDelivery.getModel().getValueAt(i, 3)) {
@@ -225,15 +223,14 @@ public class CreateBasketDeliveryList extends javax.swing.JFrame {
         }
         
         //adding the name of new delivery list to deliveredFile.txt
-//        FileManagement.writeFile("deliveredFile.txt", date + ";" + jtxtUser.getText(), true);
+        FileManagement.writeFile("deliveredFile.txt", date + ";" + jtxtUser.getText(), true);
         
         for (Member m : ml) {
             m.setChoice(false);
         };
         
         //show message for adding new delivery list
-        JOptionPane.showMessageDialog(null, "Delivery List of " +date +"saved successfully!", "Saving deliveries", JOptionPane.INFORMATION_MESSAGE);
-        //JOptionPane.showMessageDialog(null, "Delivery List of " +date +"created successfully!", "Create delivery list", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Delivery List of " +date +"created successfully!", "Create delivery list", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed

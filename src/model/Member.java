@@ -15,9 +15,10 @@ public class Member extends Person {
     private String registrationDate;
     private boolean choice;
 
-    public Member(String fistName, String lastName, String birthdate, String address, String city, String postalCode, String telephone, String email, String registrationDate, Boolean choice) {
+    public Member(String fistName, String lastName, String birthdate, String address, String city, String postalCode, String telephone, String email, String registrationDate, boolean choice) {
         super(fistName, lastName, birthdate, address, city, postalCode, telephone, email);
         this.registrationDate = registrationDate;
+        this.choice=choice;
         //choice= false;
     }
 

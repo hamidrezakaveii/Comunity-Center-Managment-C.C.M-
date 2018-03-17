@@ -221,38 +221,10 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
                 //adding the name of new confirmation list to confirmedFile.txt
                 FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
 
-//                for (Member m : ml) {
-//                    m.setChoice(false);
-//                };
                 //show message for adding new confirmation list
-                JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Confirmation List of " + date + " created successfully!", "New Confirmation list", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-
-//        if (1 == 1) {
-//
-//        } else {
-//            for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
-//                if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 3)) {
-//                    ml.get(i).setChoice(true);
-//                }
-//            }
-//            //write the coming confirmation selected to new file
-//            for (int i = 0; i < ml.size(); i++) {
-//                if (ml.get(i).isChoice()) {
-//                    FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
-//                }
-//            }
-//
-//            //adding the name of new confirmation list to confirmedFile.txt
-//            FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
-//
-//            for (Member m : ml) {
-//                m.setChoice(false);
-//            };
-//            //show message for adding new confirmation list
-//            JOptionPane.showMessageDialog(null, "Confirmation List of " + date + "created successfully!", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
-//        }
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "You should choose a date before creating a new confirmation list", "Date error", JOptionPane.INFORMATION_MESSAGE);
         }

@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.io.File;
 import java.net.FileNameMap;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,10 +19,10 @@ import tools.CreateMember;
  *
  * @author HAMIDREZA
  */
-public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
+public class BasketDeliveryManagement extends javax.swing.JFrame {
 
     /**
-     * Creates new form CreateBasketDeliveryList
+     * Creates new form BasketDeliveryManagement
      */
     private String fileNameR;
     private String date;
@@ -29,7 +30,7 @@ public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
     ArrayList<String> list = new ArrayList<>();
     MemberList ml = new MemberList();
 
-    public CreateBasketDeliveryList1(String fileNameR, String date, String user) {
+    public BasketDeliveryManagement(String fileNameR, String date, String user) {
         initComponents();
         this.fileNameR = fileNameR;
         this.date = date;
@@ -46,7 +47,7 @@ public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
         for (String s : list) {
             ml.add(CreateMember.splitLine(s));
         }
-        
+
         //populate table form ml
         Object[] rowData = new Object[4];
         DefaultTableModel model = (DefaultTableModel) jtblDelivery.getModel();
@@ -91,6 +92,7 @@ public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
 
         jtxtDate.setEditable(false);
 
+        jtxtUser.setEditable(false);
         jtxtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxtUserActionPerformed(evt);
@@ -122,7 +124,7 @@ public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtblDelivery);
 
-        jbtnCreate.setText("Create");
+        jbtnCreate.setText("Save");
         jbtnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCreateActionPerformed(evt);
@@ -206,31 +208,29 @@ public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
     private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
         
         //create new txt file for writting new confirmation list
-        String fileNameW = "deliveries\\" + date + "_" + jtxtUser.getText() + ".txt";
-        
+//        String fileNameW = "deliveries\\" + date + "_" + jtxtUser.getText() + ".txt";
+        String fileNameW = "confirmations\\" + date + "_" + jtxtUser.getText() + ".txt";        
         //read from selected checkbox from jtblDelivery table
         for (int i = 0; i < jtblDelivery.getModel().getRowCount(); i++) {
             if ((Boolean) jtblDelivery.getModel().getValueAt(i, 3)) {
                 ml.get(i).setChoice(true);
+            }else{
+                ml.get(i).setChoice(false);
             }
         }
-        
+        //Deleting the file before creating it again bellow
+        File file = new File(fileNameW);
+        file.delete();
         //write the deliverery confirmation selected to new file
         for (int i = 0; i < ml.size(); i++) {
-            if (ml.get(i).isChoice()) {
+            //if (ml.get(i).isChoice()) {
                 FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
-            }
+            //}
         }
-        
-        //adding the name of new delivery list to deliveredFile.txt
-        FileManagement.writeFile("deliveredFile.txt", date + ";" + jtxtUser.getText(), true);
-        
-        for (Member m : ml) {
-            m.setChoice(false);
-        };
-        
-        //show message for adding new delivery list
-        JOptionPane.showMessageDialog(null, "Delivery List of " +date +"created successfully!", "Create delivery list", JOptionPane.INFORMATION_MESSAGE);
+                
+        //show message for saving deliveries changes
+        JOptionPane.showMessageDialog(null, "Delivery List of " +date +" saved successfully!", "Saving deliveries", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -254,20 +254,20 @@ public class CreateBasketDeliveryList1 extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CreateBasketDeliveryList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BasketDeliveryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CreateBasketDeliveryList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BasketDeliveryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(CreateBasketDeliveryList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BasketDeliveryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CreateBasketDeliveryList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BasketDeliveryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new CreateBasketDeliveryList().setVisible(true);
+//                new BasketDeliveryManagement().setVisible(true);
 //            }
 //        });
 //    }
