@@ -5,7 +5,6 @@ import model.Member;
 import model.MemberList;
 import persistence.FileManagement;
 import tools.CreateMember;
-import tools.Utility;
 import view.MainWindow;
 import view.ShowConfirmationList;
 //import view.BasketConfirmationSwing;
