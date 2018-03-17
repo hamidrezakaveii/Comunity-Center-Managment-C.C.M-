@@ -54,15 +54,6 @@ public class AppCtr {
                 new LoginPage(mList, eList).setVisible(true);
             }
         });
-        
-        
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainWindow(mList, eList).setVisible(true);
-//            }
-//        });
-        
-        //Utility.confirmedByFolder();
 
     }
 
