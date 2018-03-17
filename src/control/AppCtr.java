@@ -8,7 +8,7 @@ import model.MemberList;
 import persistence.FileManagement;
 import tools.CreateEmploye;
 import tools.CreateMember;
-import tools.Utility;
+//import tools.Utility;
 import view.LoginPage;
 import view.MainWindow;
 import view.ShowConfirmationList;
@@ -62,7 +62,7 @@ public class AppCtr {
 //            }
 //        });
         
-        Utility.confirmedByFolder();
+        //Utility.confirmedByFolder();
 
     }
 

@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import model.MemberList;
 import persistence.FileManagement;
 
+
 /**
  *
  * @author 1795545
@@ -189,7 +190,7 @@ public class ShowConfirmationList extends javax.swing.JFrame {
         File file = new File(fileName);
         file.delete();
         model.removeRow(row);
-        
+        FileManagement.updateFile();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
