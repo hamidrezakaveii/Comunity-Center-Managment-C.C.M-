@@ -251,9 +251,16 @@ public class AddMember extends javax.swing.JFrame {
     private void jbtnAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMemberActionPerformed
 
         //Create date formatter and instantiate birthDate and registrationDate
+        String birthDate = "";
+        String regDate = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String birthDate = sdf.format(jBDate.getCalendar().getTime());
-        String registrationDate = sdf.format(jRDate.getCalendar().getTime());
+        try{
+        birthDate = sdf.format(jBDate.getCalendar().getTime());
+         regDate = sdf.format(jRDate.getCalendar().getTime());
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "The Birth date and/or Registration date could not be empty!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+
+        }
 
         //instantiate the AddMember form attributes
         String fName = jtxtFirstName.getText();
@@ -264,11 +271,11 @@ public class AddMember extends javax.swing.JFrame {
         String pCode = jtxtPostalCode.getText();
         String telephone = jtxtTelephone.getText();
         String email = jtxtEmail.getText();
-        String rDate = registrationDate;
+        String rDate = regDate;
         if (jtxtFirstName.getText().isEmpty() || jtxtLastName.getText().isEmpty()
                 || jtxtAddress.getText().isEmpty() || jtxtCity.getText().isEmpty()
                 || jtxtPostalCode.getText().isEmpty() || jtxtTelephone.getText().isEmpty()
-                || jtxtEmail.getText().isEmpty()) {
+                || jtxtEmail.getText().isEmpty() || birthDate =="" || regDate == "") {
             JOptionPane.showMessageDialog(null, "All fields must be fulfilled!", "Add member", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (eM == null) {

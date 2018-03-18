@@ -8,6 +8,7 @@ package view;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -280,9 +281,16 @@ public class AddEmploye extends javax.swing.JFrame {
     private void jbtnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddEmployeeActionPerformed
 
         //Create date formatter and instantiate birthDate and hireDate
+        String birthDate = "";
+        String hireDate = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String birthDate = sdf.format(jBDate.getCalendar().getTime());
-        String hireDate = sdf.format(jHDate.getCalendar().getTime());
+        try {
+            birthDate = sdf.format(jBDate.getCalendar().getTime());
+            hireDate = sdf.format(jHDate.getCalendar().getTime());
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "The Birth date and/or Hire date could not be empty!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+
+        }
 
         //instantiate the AddEmploye form attributes
         String fName = jtxtFirstName.getText();
@@ -300,7 +308,7 @@ public class AddEmploye extends javax.swing.JFrame {
                 || jtxtAddress.getText().isEmpty() || jtxtCity.getText().isEmpty()
                 || jtxtPostalCode.getText().isEmpty() || jtxtTelephone.getText().isEmpty()
                 || jtxtEmail.getText().isEmpty() || jtxtUsername.getText().isEmpty()
-                || jtxtPassword.getText().isEmpty() || birthDate.isEmpty() || hireDate.isEmpty()) {
+                || jtxtPassword.getText().isEmpty() || birthDate=="" || hireDate =="" ) {
             JOptionPane.showMessageDialog(null, "All fields must be fulfilled!", "Add member", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
