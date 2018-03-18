@@ -59,6 +59,7 @@ public class AddEmploye extends javax.swing.JFrame {
             Logger.getLogger(AddEmploye.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.jtxtUsername.setText(e.getUsername());
+        this.jtxtUsername.setEditable(false);
         this.jtxtPassword.setText(e.getPassword());
     }
 
@@ -335,7 +336,7 @@ public class AddEmploye extends javax.swing.JFrame {
                 eE.setPassword(pass);
                 file.delete();
                 for (String s : el.keySet()) {
-                    FileManagement.writeFile("EmployeList.txt", el.toString(), true);
+                    FileManagement.writeFile("EmployeList.txt", el.get(s).toString(), true);
                 }
                 JOptionPane.showMessageDialog(null, eE.getFistName() + "'s informations changed", "Employe Data", JOptionPane.INFORMATION_MESSAGE);
             }

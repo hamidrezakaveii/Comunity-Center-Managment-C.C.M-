@@ -6,12 +6,13 @@
 package model;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  *
  * @author HAMIDREZA
  */
-public class EmployeList extends HashMap<String, Employe> {
+public class EmployeList extends LinkedHashMap<String, Employe> {
     
     
     
