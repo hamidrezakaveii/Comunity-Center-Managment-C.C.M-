@@ -27,15 +27,15 @@ public class AddEmploye extends javax.swing.JFrame {
     private EmployeList el;
     private Employe employe;
     private Employe eE;
-    
+
     public AddEmploye(EmployeList el) {
         initComponents();
         this.el = el;
     }
-    
+
     //Constructor for when editing member from member list
-     public AddEmploye(Employe e, EmployeList el){
-        this.eE=e;
+    public AddEmploye(Employe e, EmployeList el) {
+        this.eE = e;
         this.el = el;
         initComponents();
         jbtnAddEmployee.setText("Save");
@@ -283,7 +283,7 @@ public class AddEmploye extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String birthDate = sdf.format(jBDate.getCalendar().getTime());
         String hireDate = sdf.format(jHDate.getCalendar().getTime());
-        
+
         //instantiate the AddEmploye form attributes
         String fName = jtxtFirstName.getText();
         String lName = jtxtLastName.getText();
@@ -296,35 +296,43 @@ public class AddEmploye extends javax.swing.JFrame {
         String hDate = hireDate;
         String uName = jtxtUsername.getText();
         String pass = jtxtPassword.getText();
-        
-        if (eE == null){
-            employe = new Employe(fName, lName, bDate, address, city, pCode, telephone, email, hDate, uName, pass );
-        //add employe inside the HashMap employe list
-            el.put(uName,employe);
-            //write new member in text file
-            FileManagement.writeFile("EmployeList.txt", employe.toString(), true);
-        //show message for add new user 
-            JOptionPane.showMessageDialog(null, "New employe added successfully!", "Add employe", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            File file = new File("EmployeList.txt");
-            eE.setFistName(fName);
-            eE.setLastName(lName);
-            eE.setBirthdate(bDate);
-            eE.setAddress(address);
-            eE.setCity(city);
-            eE.setPostalCode(pCode);
-            eE.setTelephone(telephone);
-            eE.setEmail(email);
-            eE.setHireDate(hDate);
-            eE.setUsername(uName);
-            eE.setPassword(pass);
-            file.delete();
-            for (String s : el.keySet()) {
-                FileManagement.writeFile("EmployeList.txt", el.toString(), true);
+        if (jtxtFirstName.getText().isEmpty() || jtxtLastName.getText().isEmpty()
+                || jtxtAddress.getText().isEmpty() || jtxtCity.getText().isEmpty()
+                || jtxtPostalCode.getText().isEmpty() || jtxtTelephone.getText().isEmpty()
+                || jtxtEmail.getText().isEmpty() || jtxtUsername.getText().isEmpty()
+                || jtxtPassword.getText().isEmpty() || birthDate.isEmpty() || hireDate.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields must be fulfilled!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            if (eE == null) {
+                employe = new Employe(fName, lName, bDate, address, city, pCode, telephone, email, hDate, uName, pass);
+                //add employe inside the HashMap employe list
+                el.put(uName, employe);
+                //write new member in text file
+                FileManagement.writeFile("EmployeList.txt", employe.toString(), true);
+                //show message for add new user 
+                JOptionPane.showMessageDialog(null, "New employe added successfully!", "Add employe", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                File file = new File("EmployeList.txt");
+                eE.setFistName(fName);
+                eE.setLastName(lName);
+                eE.setBirthdate(bDate);
+                eE.setAddress(address);
+                eE.setCity(city);
+                eE.setPostalCode(pCode);
+                eE.setTelephone(telephone);
+                eE.setEmail(email);
+                eE.setHireDate(hDate);
+                eE.setUsername(uName);
+                eE.setPassword(pass);
+                file.delete();
+                for (String s : el.keySet()) {
+                    FileManagement.writeFile("EmployeList.txt", el.toString(), true);
                 }
-            JOptionPane.showMessageDialog(null, eE.getFistName()+"'s informations changed", "Employe Data", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, eE.getFistName() + "'s informations changed", "Employe Data", JOptionPane.INFORMATION_MESSAGE);
+            }
+            dispose();
         }
-        dispose();
     }//GEN-LAST:event_jbtnAddEmployeeActionPerformed
 
     private void jtxtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtUsernameActionPerformed

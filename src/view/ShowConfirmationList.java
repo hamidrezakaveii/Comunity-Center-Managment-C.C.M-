@@ -29,6 +29,7 @@ public class ShowConfirmationList extends javax.swing.JFrame {
      */
     ArrayList<String> list = null;
 
+    //Constructor populating table with existing filenames
     public ShowConfirmationList() {
         initComponents();
 
@@ -38,7 +39,7 @@ public class ShowConfirmationList extends javax.swing.JFrame {
         FileManagement.readFile("confirmedFile.txt", true, list);
 
         for (String s : list) {
-            String[] parts = s.split(";");
+            String[] parts = s.split("_");
             rowData[0] = parts[0];
             rowData[1] = parts[1];
             model.addRow(rowData);
@@ -59,7 +60,7 @@ public class ShowConfirmationList extends javax.swing.JFrame {
         jtblShow = new javax.swing.JTable();
         jbtnShow = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbtDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Confirmed List");
@@ -116,10 +117,10 @@ public class ShowConfirmationList extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtDelete.setText("Delete");
+        jbtDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtDeleteActionPerformed(evt);
             }
         });
 
@@ -134,7 +135,7 @@ public class ShowConfirmationList extends javax.swing.JFrame {
                 .addGap(122, 122, 122)
                 .addComponent(jbtnShow)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtDelete)
                 .addGap(31, 31, 31)
                 .addComponent(jbtnCancel)
                 .addGap(95, 95, 95))
@@ -147,19 +148,19 @@ public class ShowConfirmationList extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnShow)
                     .addComponent(jbtnCancel)
-                    .addComponent(jButton1))
+                    .addComponent(jbtDelete))
                 .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+//Show button, opens de selected date to work with the delivery
     private void jbtnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnShowActionPerformed
         String fileName;
         int row = jtblShow.getSelectedRow();
         String select = list.get(row);
-        String[] parts = select.split(";");
+        String[] parts = select.split("_");
         String date = parts[0];
         String user = parts[1];
         fileName = "confirmations\\"+ date + "_"+ user +".txt";
@@ -177,21 +178,21 @@ public class ShowConfirmationList extends javax.swing.JFrame {
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
         dispose();
     }//GEN-LAST:event_jbtnCancelActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//Deleting selected confirmation list
+    private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
         String fileName;
         int row = jtblShow.getSelectedRow();
         String select = list.get(row);
-        String[] parts = select.split(";");
+        String[] parts = select.split("_");
         String date = parts[0];
         String user = parts[1];
         fileName = "confirmations\\"+ date + "_"+ user +".txt";
         File file = new File(fileName);
         file.delete();
         model.removeRow(row);
-        FileManagement.updateFile();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        FileManagement.updateCFile();
+    }//GEN-LAST:event_jbtDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,9 +230,9 @@ public class ShowConfirmationList extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtDelete;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnShow;
     private javax.swing.JTable jtblShow;

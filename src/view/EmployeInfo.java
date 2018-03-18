@@ -13,7 +13,6 @@ import model.Employe;
 import model.EmployeList;
 import model.Member;
 import model.MemberList;
-//import model.MembersTableModel;
 import persistence.FileManagement;
 import tools.CreateEmploye;
 
@@ -200,11 +199,6 @@ public class EmployeInfo extends javax.swing.JFrame {
             Boolean checked = (Boolean) dtmTable.getValueAt(i, 2);
             if (checked != null && checked) {
                 dtmTable.removeRow(i);
-//String value = (new ArrayList<String>(linkedHashMap.values())).get(pos)
-                
-//                for(String s:el.keySet()){
-//                if(s.)el.remove(s);    
-//                }
                 
                 File file = new File("EmployeList.txt");
                 //Deleting file to create new EmployeList
@@ -224,11 +218,8 @@ public class EmployeInfo extends javax.swing.JFrame {
         //Open member to edit when double click
         if (evt.getClickCount() == 2) {
             JTable target = (JTable) evt.getSource();
-            //int row = target.getSelectedRow();
-            //int column = target.getSelectedColumn();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-//                    el.get(target.getSelectedRow())
                     new AddEmploye(el.get(target.getSelectedRow()), el).setVisible(true);
                 }
             });

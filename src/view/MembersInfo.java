@@ -10,7 +10,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.MemberList;
-//import model.MembersTableModel;
 import persistence.FileManagement;
 
 
@@ -217,8 +216,6 @@ public class MembersInfo extends javax.swing.JFrame {
         //Open member to edit when double click
         if (evt.getClickCount() == 2) {
             JTable target = (JTable) evt.getSource();
-            //int row = target.getSelectedRow();
-            //int column = target.getSelectedColumn();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new AddMember(ml.get(target.getSelectedRow()), ml).setVisible(true);

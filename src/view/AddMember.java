@@ -27,15 +27,15 @@ public class AddMember extends javax.swing.JFrame {
     private MemberList ml;
     private Member member;
     private Member eM;
-    
+
     public AddMember(MemberList ml) {
         initComponents();
         this.ml = ml;
     }
-    
+
     //Constructor for when editing member from member list
-     public AddMember(Member m, MemberList ml){
-        this.eM=m;
+    public AddMember(Member m, MemberList ml) {
+        this.eM = m;
         this.ml = ml;
         initComponents();
         jbtnAddMember.setText("Save");
@@ -254,7 +254,7 @@ public class AddMember extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String birthDate = sdf.format(jBDate.getCalendar().getTime());
         String registrationDate = sdf.format(jRDate.getCalendar().getTime());
-        
+
         //instantiate the AddMember form attributes
         String fName = jtxtFirstName.getText();
         String lName = jtxtLastName.getText();
@@ -265,32 +265,39 @@ public class AddMember extends javax.swing.JFrame {
         String telephone = jtxtTelephone.getText();
         String email = jtxtEmail.getText();
         String rDate = registrationDate;
-        if (eM == null){
-            member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate, false);
-        //add member inside the member list
-            ml.add(member);
-            //write new member in text file
-            FileManagement.writeFile("memberlist.txt", member.toString(), true);
-        //show message for add new user 
-            JOptionPane.showMessageDialog(null, "New member added successfully!", "Add member", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            File file = new File("MemberList.txt");
-            eM.setFistName(fName);
-            eM.setLastName(lName);
-            eM.setBirthdate(bDate);
-            eM.setAddress(address);
-            eM.setCity(city);
-            eM.setPostalCode(pCode);
-            eM.setTelephone(telephone);
-            eM.setEmail(email);
-            eM.setRegistrationDate(rDate);
-            file.delete();
-            for (Member m : ml) {
-                FileManagement.writeFile("MemberList.txt", m.toString(), true);
+        if (jtxtFirstName.getText().isEmpty() || jtxtLastName.getText().isEmpty()
+                || jtxtAddress.getText().isEmpty() || jtxtCity.getText().isEmpty()
+                || jtxtPostalCode.getText().isEmpty() || jtxtTelephone.getText().isEmpty()
+                || jtxtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields must be fulfilled!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (eM == null) {
+                member = new Member(fName, lName, bDate, address, city, pCode, telephone, email, rDate, false);
+                //add member inside the member list
+                ml.add(member);
+                //write new member in text file
+                FileManagement.writeFile("memberlist.txt", member.toString(), true);
+                //show message for add new user 
+                JOptionPane.showMessageDialog(null, "New member added successfully!", "Add member", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                File file = new File("MemberList.txt");
+                eM.setFistName(fName);
+                eM.setLastName(lName);
+                eM.setBirthdate(bDate);
+                eM.setAddress(address);
+                eM.setCity(city);
+                eM.setPostalCode(pCode);
+                eM.setTelephone(telephone);
+                eM.setEmail(email);
+                eM.setRegistrationDate(rDate);
+                file.delete();
+                for (Member m : ml) {
+                    FileManagement.writeFile("MemberList.txt", m.toString(), true);
                 }
-            JOptionPane.showMessageDialog(null, eM.getFistName()+"'s informations changed", "Member Data", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, eM.getFistName() + "'s informations changed", "Member Data", JOptionPane.INFORMATION_MESSAGE);
+            }
+            dispose();
         }
-        dispose();
     }//GEN-LAST:event_jbtnAddMemberActionPerformed
 
     /**
