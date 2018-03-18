@@ -6,7 +6,6 @@ Paulo;Mathew;1983-09-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa
 Paul;Jack;1988-04-21;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2017-05-12;false
 Joao;Rafael;1972-03-15;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2017-05-12;false
 hami;Leonardo;1983-09-10;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2017-05-12;false
-Paulo;Mathew;1987-09-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Haroldo;Carvalho;1972-09-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Joao;Thiago;1989-12-07;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Joao;Matheus;1983-09-07;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
