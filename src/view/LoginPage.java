@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import model.EmployeList;
 import model.MemberList;
@@ -49,7 +50,7 @@ public class LoginPage extends javax.swing.JFrame {
         setTitle("Login to system");
         setResizable(false);
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jLabel1.setText("User name: ");
 
@@ -58,6 +59,11 @@ public class LoginPage extends javax.swing.JFrame {
         jtxtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxtPasswordActionPerformed(evt);
+            }
+        });
+        jtxtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtPasswordKeyPressed(evt);
             }
         });
 
@@ -169,6 +175,12 @@ public class LoginPage extends javax.swing.JFrame {
     private void jtxtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtPasswordActionPerformed
+
+    private void jtxtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPasswordKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jbtnLogin.doClick();
+        }
+    }//GEN-LAST:event_jtxtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
