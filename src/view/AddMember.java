@@ -19,7 +19,7 @@ import persistence.FileManagement;
  *
  * @author 1795928
  */
-public class AddManagement extends javax.swing.JFrame {
+public class AddMember extends javax.swing.JFrame {
 
     /**
      * Creates new form AddMember
@@ -28,13 +28,13 @@ public class AddManagement extends javax.swing.JFrame {
     private Member member;
     private Member eM;
     
-    public AddManagement(MemberList ml) {
+    public AddMember(MemberList ml) {
         initComponents();
         this.ml = ml;
     }
     
     //Constructor for when editing member from member list
-     public AddManagement(Member m, MemberList ml){
+     public AddMember(Member m, MemberList ml){
         this.eM=m;
         this.ml = ml;
         initComponents();
@@ -45,7 +45,7 @@ public class AddManagement extends javax.swing.JFrame {
         try {
             this.jBDate.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(m.getBirthdate())));
         } catch (ParseException ex) {
-            Logger.getLogger(AddManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.jtxtAddress.setText(m.getAddress());
         this.jtxtCity.setText(m.getCity());
@@ -55,7 +55,7 @@ public class AddManagement extends javax.swing.JFrame {
         try {
             this.jRDate.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(m.getRegistrationDate())));
         } catch (ParseException ex) {
-            Logger.getLogger(AddManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

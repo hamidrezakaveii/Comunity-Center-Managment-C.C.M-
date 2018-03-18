@@ -166,7 +166,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void mManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mManagementActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MembersInfo(ml).setVisible(true);
+                new AddMember(ml).setVisible(true);
             }
         });
     }//GEN-LAST:event_mManagementActionPerformed
