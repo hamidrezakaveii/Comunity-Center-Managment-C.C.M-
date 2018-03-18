@@ -95,7 +95,8 @@ public class FileManagement {
 
     }
     
-        public static void updateFile() {
+//Method used to update the file list of files acoording to files contained inside the folder of confirmations    
+    public static void updateCFile() {
         File folder = new File("confirmations\\");
         File oldFile = new File("confirmedFile.txt");
         File[] listOfFiles = folder.listFiles();
@@ -104,12 +105,11 @@ public class FileManagement {
             if (listOfFiles[i].isFile()) {
                 String fullFileName = listOfFiles[i].getName();
                 String[] parts = fullFileName.split("\\.");
-                System.out.println(parts[0]);
                 fileInfo.add(parts[0]);
             }
         }
         oldFile.delete();
-        for(String s:fileInfo){
+        for (String s : fileInfo) {
             FileManagement.writeFile("confirmedFile.txt", s, true);
         }
     }

@@ -1,25 +1,21 @@
 Haroldo;Carvalho;1980-09-26;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2001-01-01;false
 Joao;Thiago;1978-04-21;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2001-01-01;false
-hami;Kaveii;1980-09-07;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2017-05-12;false
-Joao Paulo;Tadeu;1977-10-16;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2001-01-01;false
+Hami;Kaveii;1980-09-07;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2017-05-12;false
 Paulo;Mathew;1983-09-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2017-05-12;false
 Paul;Jack;1988-04-21;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2017-05-12;false
 Joao;Rafael;1972-03-15;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2017-05-12;false
-hami;Leonardo;1983-09-10;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2017-05-12;false
+Hami;Leonardo;1983-09-10;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2017-05-12;false
 Paulo;Mathew;1987-09-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Haroldo;Carvalho;1972-09-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Joao;Thiago;1989-12-07;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Joao;Matheus;1983-09-07;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
-hami;Kaveii;1976-02-12;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2015-06-10;false
 Junior;Paulo;1970-11-18;Rue C;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2015-06-10;false
 Joao Paulo;Tadeu;1990-11-02;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2016-06-10;false
 Almeida;Leandro;1976-13-07;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2016-06-10;false
 Joao;Thales;1970-09-07;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2016-06-10;false
-hami;kaveii;1980-09-11;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2016-06-10;false
 Junior;Souza;1979-02-02;Rue C;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2016-06-10;false
 Paulo;Mathew;1978-01-02;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2014-06-10;false
 Paul;Jack;1954-09-07;Rue a;Toronto;H1a1U7;654564456;sadfasd@akfdfa.com;2014-06-10;false
 Joao;Rafael;1980-10-07;Rue a;Montreal;H1a1U7;654564456;sadfasd@akfdfa.com;2014-06-10;false
-hami;Leonardo;1981-01-07;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2014-06-10;false
-Paulo;Mathew;1976-03-07;Rue de college;Vancouver;H1a1U7;654564456;sadfasd@akfdfa.com;2014-06-10;false
-fasfsa;fasafs;2018-03-15;asfasf;asfafs;3fsaf;514999654321;asf@gmail.com;2018-03-08;false
+Hami;Leonardo;1981-01-07;4567 dufferin;Montreal;h3x2e2;5148088936;hami@yahoo.com;2014-06-10;false
+Suzy;Barts;2018-03-23;5896, Rue des cascades;Montreal;h1h9l9;54564654;suzy@gmail.com;2018-03-15;false

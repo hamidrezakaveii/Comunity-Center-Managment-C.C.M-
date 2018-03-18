@@ -219,7 +219,7 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
                     }
                 }
                 //adding the name of new confirmation list to confirmedFile.txt
-                FileManagement.writeFile("confirmedFile.txt", date + ";" + jtxtUser.getText(), true);
+                FileManagement.writeFile("confirmedFile.txt", date + "_" + jtxtUser.getText(), true);
 
                 //show message for adding new confirmation list
                 JOptionPane.showMessageDialog(null, "Confirmation List of " + date + " created successfully!", "New Confirmation list", JOptionPane.INFORMATION_MESSAGE);
