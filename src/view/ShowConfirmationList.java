@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.MemberList;
 import persistence.FileManagement;
-
 
 /**
  *
@@ -158,21 +158,27 @@ public class ShowConfirmationList extends javax.swing.JFrame {
 //Show button, opens de selected date to work with the delivery
     private void jbtnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnShowActionPerformed
         String fileName;
-        int row = jtblShow.getSelectedRow();
-        String select = list.get(row);
-        String[] parts = select.split("_");
-        String date = parts[0];
-        String user = parts[1];
-        fileName = "confirmations\\"+ date + "_"+ user +".txt";
+        int row = -1;
+        row = jtblShow.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "You needed to select one list", "Selection error", JOptionPane.ERROR_MESSAGE);
+        } else {
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new BasketDeliveryManagement(fileName, date, user).setVisible(true);
-            }
-        });
-        
-        dispose();
+            String select = list.get(row);
+            String[] parts = select.split("_");
+            String date = parts[0];
+            String user = parts[1];
+            fileName = "confirmations\\" + date + "_" + user + ".txt";
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new BasketDeliveryManagement(fileName, date, user).setVisible(true);
+                }
+            });
+
+            dispose();
+        }
     }//GEN-LAST:event_jbtnShowActionPerformed
 
     private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -182,16 +188,21 @@ public class ShowConfirmationList extends javax.swing.JFrame {
     private void jbtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) jtblShow.getModel();
         String fileName;
-        int row = jtblShow.getSelectedRow();
-        String select = list.get(row);
-        String[] parts = select.split("_");
-        String date = parts[0];
-        String user = parts[1];
-        fileName = "confirmations\\"+ date + "_"+ user +".txt";
-        File file = new File(fileName);
-        file.delete();
-        model.removeRow(row);
-        FileManagement.updateCFile();
+        int row = -1;
+        row = jtblShow.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "You needed to select one list", "Selection error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String select = list.get(row);
+            String[] parts = select.split("_");
+            String date = parts[0];
+            String user = parts[1];
+            fileName = "confirmations\\" + date + "_" + user + ".txt";
+            File file = new File(fileName);
+            file.delete();
+            model.removeRow(row);
+            FileManagement.updateCFile();
+        }
     }//GEN-LAST:event_jbtDeleteActionPerformed
 
     /**
