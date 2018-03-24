@@ -309,18 +309,26 @@ public class AddEmploye extends javax.swing.JFrame {
                 || jtxtAddress.getText().isEmpty() || jtxtCity.getText().isEmpty()
                 || jtxtPostalCode.getText().isEmpty() || jtxtTelephone.getText().isEmpty()
                 || jtxtEmail.getText().isEmpty() || jtxtUsername.getText().isEmpty()
-                || jtxtPassword.getText().isEmpty() || birthDate=="" || hireDate =="" ) {
+                || jtxtPassword.getText().isEmpty() || birthDate == "" || hireDate == "") {
             JOptionPane.showMessageDialog(null, "All fields must be fulfilled!", "Add member", JOptionPane.INFORMATION_MESSAGE);
         } else {
-
+            //check if needs to add new employe or modify the exsisting employe
             if (eE == null) {
-                employe = new Employe(fName, lName, bDate, address, city, pCode, telephone, email, hDate, uName, pass);
-                //add employe inside the HashMap employe list
-                el.put(uName, employe);
-                //write new member in text file
-                FileManagement.writeFile("EmployeList.txt", employe.toString(), true);
-                //show message for add new user 
-                JOptionPane.showMessageDialog(null, "New employe added successfully!", "Add employe", JOptionPane.INFORMATION_MESSAGE);
+                //check if the user name already exists in the system
+                employe = el.get(uName);
+                if (employe != null) {
+                    JOptionPane.showMessageDialog(null, "Another user already exists in the system with the same user name!", "Add employe", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    employe = new Employe(fName, lName, bDate, address, city, pCode, telephone, email, hDate, uName, pass);
+                    //add employe inside the HashMap employe list
+                    el.put(uName, employe);
+                    //write new member in text file
+                    FileManagement.writeFile("EmployeList.txt", employe.toString(), true);
+                    //show message for add new user 
+                    JOptionPane.showMessageDialog(null, "New employe added successfully!", "Add employe", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                }
+            //modify the existing employe    
             } else {
                 File file = new File("EmployeList.txt");
                 eE.setFistName(fName);
@@ -339,8 +347,9 @@ public class AddEmploye extends javax.swing.JFrame {
                     FileManagement.writeFile("EmployeList.txt", el.get(s).toString(), true);
                 }
                 JOptionPane.showMessageDialog(null, eE.getFistName() + "'s informations changed", "Employe Data", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             }
-            dispose();
+            
         }
     }//GEN-LAST:event_jbtnAddEmployeeActionPerformed
 
