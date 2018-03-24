@@ -102,7 +102,10 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="mManagement">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Member Management"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="E:\OneDrive\NetBeansProjects\24x24-free-application-icons\gif\24x24\User group.gif"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value=" Member Management"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mManagementActionPerformed"/>
@@ -110,7 +113,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Create Confirmation List"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="E:\OneDrive\NetBeansProjects\24x24-free-application-icons\gif\24x24\Yes.gif"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value=" Create Confirmation List"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
@@ -118,7 +124,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="List of Confirmation"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="E:\OneDrive\NetBeansProjects\24x24-free-application-icons\gif\24x24\List.gif"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value=" List of Confirmation"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
@@ -144,7 +154,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Exit"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="E:\OneDrive\NetBeansProjects\24x24-free-application-icons\gif\24x24\Exit.gif"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value=" Exit"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -152,7 +165,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEmMa">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Employe Managment"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="E:\OneDrive\NetBeansProjects\24x24-free-application-icons\gif\24x24\People.gif"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value=" Employe Managment"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnEmMaActionPerformed"/>

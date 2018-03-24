@@ -52,21 +52,25 @@ public class MainWindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        mManagement.setText("Member Management");
+        mManagement.setIcon(new javax.swing.ImageIcon("E:\\OneDrive\\NetBeansProjects\\24x24-free-application-icons\\gif\\24x24\\User group.gif")); // NOI18N
+        mManagement.setText(" Member Management");
         mManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mManagementActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Create Confirmation List");
+        jButton3.setIcon(new javax.swing.ImageIcon("E:\\OneDrive\\NetBeansProjects\\24x24-free-application-icons\\gif\\24x24\\Yes.gif")); // NOI18N
+        jButton3.setText(" Create Confirmation List");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("List of Confirmation");
+        jButton4.setIcon(new javax.swing.ImageIcon("E:\\OneDrive\\NetBeansProjects\\24x24-free-application-icons\\gif\\24x24\\List.gif")); // NOI18N
+        jButton4.setText(" List of Confirmation");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -79,14 +83,16 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.jpg"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(1038, 802));
 
-        jButton1.setText("Exit");
+        jButton1.setIcon(new javax.swing.ImageIcon("E:\\OneDrive\\NetBeansProjects\\24x24-free-application-icons\\gif\\24x24\\Exit.gif")); // NOI18N
+        jButton1.setText(" Exit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jbtnEmMa.setText("Employe Managment");
+        jbtnEmMa.setIcon(new javax.swing.ImageIcon("E:\\OneDrive\\NetBeansProjects\\24x24-free-application-icons\\gif\\24x24\\People.gif")); // NOI18N
+        jbtnEmMa.setText(" Employe Managment");
         jbtnEmMa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEmMaActionPerformed(evt);
