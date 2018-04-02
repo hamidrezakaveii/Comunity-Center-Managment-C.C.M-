@@ -31,6 +31,10 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
     public CreateBasketConfirmationList(MemberList ml) {
         initComponents();
         this.ml = ml;
+        
+        //set user login to windows for user textfield
+        jtxtUser.setText(System.getProperty("user.name"));
+        //new com.sun.security.auth.module.NTSystem().getName(); //second way 
 
         //populate table from file
         Object rowData[] = new Object[4];
@@ -186,50 +190,50 @@ public class CreateBasketConfirmationList extends javax.swing.JFrame {
         Boolean noChoice = false;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = null;
-        try{
+        try {
             date = sdf.format(jDate.getCalendar().getTime());
             //create new txt file for writting new confirmation list
-        String fileNameW = "confirmations\\" + date + "_" + jtxtUser.getText() + ".txt";
+            String fileNameW = "confirmations\\" + date + "_" + jtxtUser.getText() + ".txt";
 
-        //Verify if there is any checeked members 
-        for (int j = 0; j < jtblBasketConfirmation.getModel().getRowCount(); j++) {
-            if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(j, 3)) {
-                noChoice = true;
+            //Verify if there is any checeked members 
+            for (int j = 0; j < jtblBasketConfirmation.getModel().getRowCount(); j++) {
+                if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(j, 3)) {
+                    noChoice = true;
+                }
             }
-        }
-        if (jtxtUser.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Fill with the responsible name on the top(User:)", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            if (!noChoice) {
-                JOptionPane.showMessageDialog(null, "You should choose at least one member to create the list", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+            if (jtxtUser.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Fill with the responsible name on the top(User:)", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                //read from selected checkbox from jtblBasketConfirmation table
-                for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
-                    if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 3)) {
-                        ml.get(i).setChoice(true);
+                if (!noChoice) {
+                    JOptionPane.showMessageDialog(null, "You should choose at least one member to create the list", "Create confirmation list", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    //read from selected checkbox from jtblBasketConfirmation table
+                    for (int i = 0; i < jtblBasketConfirmation.getModel().getRowCount(); i++) {
+                        if ((Boolean) jtblBasketConfirmation.getModel().getValueAt(i, 3)) {
+                            ml.get(i).setChoice(true);
+                        }
                     }
-                }
-                //write the coming confirmation selected to new file
-                for (int i = 0; i < ml.size(); i++) {
-                    if (ml.get(i).isChoice()) {
-                        //setting choice false before writing to the file
-                        ml.get(i).setChoice(false);
-                        //writing members who will get the basket on the confirmation list
-                        FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
+                    //write the coming confirmation selected to new file
+                    for (int i = 0; i < ml.size(); i++) {
+                        if (ml.get(i).isChoice()) {
+                            //setting choice false before writing to the file
+                            ml.get(i).setChoice(false);
+                            //writing members who will get the basket on the confirmation list
+                            FileManagement.writeFile(fileNameW, ml.get(i).toString(), true);
+                        }
                     }
-                }
-                //adding the name of new confirmation list to confirmedFile.txt
-                FileManagement.writeFile("confirmedFile.txt", date + "_" + jtxtUser.getText(), true);
+                    //adding the name of new confirmation list to confirmedFile.txt
+                    FileManagement.writeFile("confirmedFile.txt", date + "_" + jtxtUser.getText(), true);
 
-                //show message for adding new confirmation list
-                JOptionPane.showMessageDialog(null, "Confirmation List of " + date + " created successfully!", "New Confirmation list", JOptionPane.INFORMATION_MESSAGE);
+                    //show message for adding new confirmation list
+                    JOptionPane.showMessageDialog(null, "Confirmation List of " + date + " created successfully!", "New Confirmation list", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
-        }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "You should choose a date before creating a new confirmation list", "Date error", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        
+
     }//GEN-LAST:event_jbtnCreateActionPerformed
 
     /**
